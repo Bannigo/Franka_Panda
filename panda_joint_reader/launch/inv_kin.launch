@@ -1,0 +1,8 @@
+<launch>
+    <arg name="node_start_delay" default="4.0" /> 
+    <node name = "compute_another_jacobian" pkg = "panda_joint_reader" type= "another_jacobian.py" output= "screen"/>
+    <node name = "fow_kin_server" pkg = "panda_joint_reader" type= "fow_kin_server.py" />
+    <node name = "incremental_inverse" pkg = "panda_joint_reader" type= "incremental_inverse_server.py" output= "screen" />
+    <node name = "req_ik" pkg = "panda_joint_reader" type= "req_ik.py" output= "screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+
+</launch>
